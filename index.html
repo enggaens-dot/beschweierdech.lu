@@ -89,35 +89,28 @@
 
   <!-- Firebase & JavaScript -->
   <script type="module">
+    // 🔹 1️⃣ Import Firebase Module
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-import { initializeApp } from "firebase/app";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBFV8fsdQ_yrabBSfWmlCyZEBMJO37ob1Y",
-  authDomain: "beschweierdech.firebaseapp.com",
-  projectId: "beschweierdech",
-  storageBucket: "beschweierdech.firebasestorage.app",
-  messagingSenderId: "442556247394",
-  appId: "1:442556247394:web:a7a3ed0f4c5b5e1e39d03b"
-};
-
-const app = initializeApp(firebaseConfig);
+   
     const firebaseConfig = {
-      apiKey: "DEIN_API_KEY",
-      authDomain: "DEIN_PROJEKT.firebaseapp.com",
-      projectId: "DEIN_PROJEKT",
-      storageBucket: "DEIN_PROJEKT.appspot.com",
-      messagingSenderId: "DEINE_MESSAGING_ID",
-      appId: "DEIN_APP_ID"
+      apiKey: "AIzaSyBFV8fsdQ_yrabBSfWmlCyZEBMJO37ob1Y",
+      authDomain: "beschweierdech.firebaseapp.com",
+      projectId: "beschweierdech",
+      storageBucket: ""beschweierdech.firebasestorage.app",
+      messagingSenderId: "442556247394",
+      appId: "1:442556247394:web:a7a3ed0f4c5b5e1e39d03b"
     };
 
+    // 🔹 3️⃣ Firebase initialisieren
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
+    // 🔹 4️⃣ Elemente abrufen
     const complaintsDiv = document.getElementById("complaints");
 
+    // 🔹 5️⃣ Funktion zum Absenden einer Beschwerde
     async function sendComplaint() {
       const text = document.getElementById("text").value.trim();
       if (!text) return;
@@ -130,6 +123,7 @@ const app = initializeApp(firebaseConfig);
       document.getElementById("text").value = "";
     }
 
+    // 🔹 6️⃣ Echtzeit-Anzeige aller Beschwerden
     const q = query(collection(db, "complaints"), orderBy("time", "desc"));
     onSnapshot(q, (snapshot) => {
       complaintsDiv.innerHTML = "";
