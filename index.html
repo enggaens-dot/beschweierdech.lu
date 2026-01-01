@@ -90,10 +90,11 @@
 
   <!-- Firebase & JavaScript -->
   <script type="module">
+    // Imports für Firebase
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    // 🔹 Firebase-Konfiguration direkt eingefügt
+    // Firebase-Konfiguration direkt eingefügt
     const firebaseConfig = {
       apiKey: "AIzaSyBFV8fsdQ_yrabBSfWmlCyZEBMJ037ob1Y",
       authDomain: "beschweierdech.firebaseapp.com",
@@ -110,25 +111,26 @@
     // Elemente abrufen
     const complaintsDiv = document.getElementById("complaints");
     const sendBtn = document.getElementById("sendBtn");
+    const textInput = document.getElementById("text");
 
     // Funktion zum Absenden einer Beschwerde
     async function sendComplaint() {
-      const text = document.getElementById("text").value.trim();
+      const text = textInput.value.trim();
       if (!text) return;
 
       try {
         await addDoc(collection(db, "complaints"), {
-          text,
+          text: text,
           time: Date.now()
         });
-        document.getElementById("text").value = "";
+        textInput.value = "";
       } catch (error) {
         console.error("Fehler beim Absenden:", error);
         alert("Fehler beim Absenden der Beschwerde. Prüfe die Konsole.");
       }
     }
 
-    // Button EventListener setzen
+    // Button EventListener
     sendBtn.addEventListener("click", sendComplaint);
 
     // Echtzeit-Anzeige aller Beschwerden
