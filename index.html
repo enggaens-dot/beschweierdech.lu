@@ -83,7 +83,7 @@
 
   <h1>Gebe deine Beschwerde ein</h1>
   <textarea id="text" rows="3" placeholder="Schreibe deine Beschwerde hier..."></textarea><br>
-  <button onclick="sendComplaint()">Senden</button>
+  <button id="sendBtn">Senden</button>
 
   <div class="complaints" id="complaints"></div>
 
@@ -93,12 +93,347 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-   
+    // 🔹 2️⃣ HIER DEIN FIREBASE-CODE EINSETZEN
+    // Ersetze diesen Block komplett mit deinem Firebase-Web-App Code aus der Konsole
+    /*
     const firebaseConfig = {
-      apiKey: "AIzaSyBFV8fsdQ_yrabBSfWmlCyZEBMJO37ob1Y",
+      apiKey: "DEIN_API_KEY",
+      authDomain: "DEIN_PROJEKT.firebaseapp.com",
+      projectId: "DEIN_PROJEKT",
+      storageBucket: "DEIN_PROJEKT.appspot.com",
+      messagingSenderId: "DEINE_MESSAGING_ID",
+      appId: "DEIN_APP_ID"
+    };
+    */
+    const firebaseConfig = {
+      apiKey: <!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Beschweier dech</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      min-height: 100vh;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 500px;
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      resize: none;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 12px 25px;
+      border-radius: 12px;
+      border: none;
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 30px;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+    }
+
+    .complaints {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .bubble {
+      background: #1e293b;
+      padding: 15px 20px;
+      border-radius: 20px;
+      max-width: 250px;
+      position: relative;
+      color: white;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #1e293b;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gebe deine Beschwerde ein</h1>
+  <textarea id="text" rows="3" placeholder="Schreibe deine Beschwerde hier..."></textarea><br>
+  <button id="sendBtn">Senden</button>
+
+  <div class="complaints" id="complaints"></div>
+
+  <!-- Firebase & JavaScript -->
+  <script type="module">
+    // 🔹 1️⃣ Import Firebase Module
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // 🔹 2️⃣ HIER DEIN FIREBASE-CODE EINSETZEN
+    // Ersetze diesen Block komplett mit deinem Firebase-Web-App Code aus der Konsole
+    /*
+    const firebaseConfig = {
+      apiKey: "DEIN_API_KEY",
+      authDomain: "DEIN_PROJEKT.firebaseapp.com",
+      projectId: "DEIN_PROJEKT",
+      storageBucket: "DEIN_PROJEKT.appspot.com",
+      messagingSenderId: "DEINE_MESSAGING_ID",
+      appId: "DEIN_APP_ID"
+    };
+    */
+    const firebaseConfig = {
+      apiKey: <!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Beschweier dech</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      min-height: 100vh;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 500px;
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      resize: none;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 12px 25px;
+      border-radius: 12px;
+      border: none;
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 30px;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+    }
+
+    .complaints {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .bubble {
+      background: #1e293b;
+      padding: 15px 20px;
+      border-radius: 20px;
+      max-width: 250px;
+      position: relative;
+      color: white;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #1e293b;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gebe deine Beschwerde ein</h1>
+  <textarea id="text" rows="3" placeholder="Schreibe deine Beschwerde hier..."></textarea><br>
+  <button id="sendBtn">Senden</button>
+
+  <div class="complaints" id="complaints"></div>
+
+  <!-- Firebase & JavaScript -->
+  <script type="module">
+    // 🔹 1️⃣ Import Firebase Module
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // 🔹 2️⃣ HIER DEIN FIREBASE-CODE EINSETZEN
+    // Ersetze diesen Block komplett mit deinem Firebase-Web-App Code aus der Konsole
+    /*
+    const firebaseConfig = {
+      apiKey: "DEIN_API_KEY",
+      authDomain: "DEIN_PROJEKT.firebaseapp.com",
+      projectId: "DEIN_PROJEKT",
+      storageBucket: "DEIN_PROJEKT.appspot.com",
+      messagingSenderId: "DEINE_MESSAGING_ID",
+      appId: "DEIN_APP_ID"
+    };
+    */
+    const firebaseConfig = {
+      apiKey: <!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Beschweier dech</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      min-height: 100vh;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 500px;
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+      resize: none;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 12px 25px;
+      border-radius: 12px;
+      border: none;
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 30px;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+    }
+
+    .complaints {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .bubble {
+      background: #1e293b;
+      padding: 15px 20px;
+      border-radius: 20px;
+      max-width: 250px;
+      position: relative;
+      color: white;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #1e293b;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gebe deine Beschwerde ein</h1>
+  <textarea id="text" rows="3" placeholder="Schreibe deine Beschwerde hier..."></textarea><br>
+  <button id="sendBtn">Senden</button>
+
+  <div class="complaints" id="complaints"></div>
+
+  <!-- Firebase & JavaScript -->
+  <script type="module">
+    // 🔹 1️⃣ Import Firebase Module
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // 🔹 2️⃣ HIER DEIN FIREBASE-CODE EINSETZEN
+    // Ersetze diesen Block komplett mit deinem Firebase-Web-App Code aus der Konsole
+    /*
+    const firebaseConfig = {
+      apiKey: "DEIN_API_KEY",
+      authDomain: "DEIN_PROJEKT.firebaseapp.com",
+      projectId: "DEIN_PROJEKT",
+      storageBucket: "DEIN_PROJEKT.appspot.com",
+      messagingSenderId: "DEINE_MESSAGING_ID",
+      appId: "DEIN_APP_ID"
+    };
+    */
+    const firebaseConfig = {
+      apiKey: "AIzaSyBFV8fsdQ_yrabBSfWmlCyZEBMJ037ob1Y",
       authDomain: "beschweierdech.firebaseapp.com",
       projectId: "beschweierdech",
-      storageBucket: ""beschweierdech.firebasestorage.app",
+      storageBucket: "beschweierdech.firebasestorage.app",
       messagingSenderId: "442556247394",
       appId: "1:442556247394:web:a7a3ed0f4c5b5e1e39d03b"
     };
@@ -109,21 +444,182 @@
 
     // 🔹 4️⃣ Elemente abrufen
     const complaintsDiv = document.getElementById("complaints");
+    const sendBtn = document.getElementById("sendBtn");
 
     // 🔹 5️⃣ Funktion zum Absenden einer Beschwerde
     async function sendComplaint() {
       const text = document.getElementById("text").value.trim();
       if (!text) return;
 
-      await addDoc(collection(db, "complaints"), {
-        text,
-        time: Date.now()
-      });
-
-      document.getElementById("text").value = "";
+      try {
+        await addDoc(collection(db, "complaints"), {
+          text,
+          time: Date.now()
+        });
+        document.getElementById("text").value = "";
+      } catch (error) {
+        console.error("Fehler beim Absenden:", error);
+        alert("Fehler beim Absenden der Beschwerde. Prüfe die Konsole.");
+      }
     }
 
-    // 🔹 6️⃣ Echtzeit-Anzeige aller Beschwerden
+    // 🔹 6️⃣ Button EventListener korrekt setzen
+    sendBtn.addEventListener("click", sendComplaint);
+
+    // 🔹 7️⃣ Echtzeit-Anzeige aller Beschwerden
+    const q = query(collection(db, "complaints"), orderBy("time", "desc"));
+    onSnapshot(q, (snapshot) => {
+      complaintsDiv.innerHTML = "";
+      snapshot.forEach(doc => {
+        const div = document.createElement("div");
+        div.className = "bubble";
+        div.textContent = doc.data().text;
+        complaintsDiv.appendChild(div);
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+      authDomain: "HIER_DEIN_PROJEKT.firebaseapp.com",
+      projectId: "HIER_DEIN_PROJEKT",
+      storageBucket: "HIER_DEIN_PROJEKT.appspot.com",
+      messagingSenderId: "HIER_DEINE_MESSAGING_ID",
+      appId: "HIER_DEIN_APP_ID"
+    };
+
+    // 🔹 3️⃣ Firebase initialisieren
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // 🔹 4️⃣ Elemente abrufen
+    const complaintsDiv = document.getElementById("complaints");
+    const sendBtn = document.getElementById("sendBtn");
+
+    // 🔹 5️⃣ Funktion zum Absenden einer Beschwerde
+    async function sendComplaint() {
+      const text = document.getElementById("text").value.trim();
+      if (!text) return;
+
+      try {
+        await addDoc(collection(db, "complaints"), {
+          text,
+          time: Date.now()
+        });
+        document.getElementById("text").value = "";
+      } catch (error) {
+        console.error("Fehler beim Absenden:", error);
+        alert("Fehler beim Absenden der Beschwerde. Prüfe die Konsole.");
+      }
+    }
+
+    // 🔹 6️⃣ Button EventListener korrekt setzen
+    sendBtn.addEventListener("click", sendComplaint);
+
+    // 🔹 7️⃣ Echtzeit-Anzeige aller Beschwerden
+    const q = query(collection(db, "complaints"), orderBy("time", "desc"));
+    onSnapshot(q, (snapshot) => {
+      complaintsDiv.innerHTML = "";
+      snapshot.forEach(doc => {
+        const div = document.createElement("div");
+        div.className = "bubble";
+        div.textContent = doc.data().text;
+        complaintsDiv.appendChild(div);
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+      authDomain: "HIER_DEIN_PROJEKT.firebaseapp.com",
+      projectId: "HIER_DEIN_PROJEKT",
+      storageBucket: "HIER_DEIN_PROJEKT.appspot.com",
+      messagingSenderId: "HIER_DEINE_MESSAGING_ID",
+      appId: "HIER_DEIN_APP_ID"
+    };
+
+    // 🔹 3️⃣ Firebase initialisieren
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // 🔹 4️⃣ Elemente abrufen
+    const complaintsDiv = document.getElementById("complaints");
+    const sendBtn = document.getElementById("sendBtn");
+
+    // 🔹 5️⃣ Funktion zum Absenden einer Beschwerde
+    async function sendComplaint() {
+      const text = document.getElementById("text").value.trim();
+      if (!text) return;
+
+      try {
+        await addDoc(collection(db, "complaints"), {
+          text,
+          time: Date.now()
+        });
+        document.getElementById("text").value = "";
+      } catch (error) {
+        console.error("Fehler beim Absenden:", error);
+        alert("Fehler beim Absenden der Beschwerde. Prüfe die Konsole.");
+      }
+    }
+
+    // 🔹 6️⃣ Button EventListener korrekt setzen
+    sendBtn.addEventListener("click", sendComplaint);
+
+    // 🔹 7️⃣ Echtzeit-Anzeige aller Beschwerden
+    const q = query(collection(db, "complaints"), orderBy("time", "desc"));
+    onSnapshot(q, (snapshot) => {
+      complaintsDiv.innerHTML = "";
+      snapshot.forEach(doc => {
+        const div = document.createElement("div");
+        div.className = "bubble";
+        div.textContent = doc.data().text;
+        complaintsDiv.appendChild(div);
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+      authDomain: "HIER_DEIN_PROJEKT.firebaseapp.com",
+      projectId: "HIER_DEIN_PROJEKT",
+      storageBucket: "HIER_DEIN_PROJEKT.appspot.com",
+      messagingSenderId: "HIER_DEINE_MESSAGING_ID",
+      appId: "HIER_DEIN_APP_ID"
+    };
+
+    // 🔹 3️⃣ Firebase initialisieren
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // 🔹 4️⃣ Elemente abrufen
+    const complaintsDiv = document.getElementById("complaints");
+    const sendBtn = document.getElementById("sendBtn");
+
+    // 🔹 5️⃣ Funktion zum Absenden einer Beschwerde
+    async function sendComplaint() {
+      const text = document.getElementById("text").value.trim();
+      if (!text) return;
+
+      try {
+        await addDoc(collection(db, "complaints"), {
+          text,
+          time: Date.now()
+        });
+        document.getElementById("text").value = "";
+      } catch (error) {
+        console.error("Fehler beim Absenden:", error);
+        alert("Fehler beim Absenden der Beschwerde. Prüfe die Konsole.");
+      }
+    }
+
+    // 🔹 6️⃣ Button EventListener korrekt setzen
+    sendBtn.addEventListener("click", sendComplaint);
+
+    // 🔹 7️⃣ Echtzeit-Anzeige aller Beschwerden
     const q = query(collection(db, "complaints"), orderBy("time", "desc"));
     onSnapshot(q, (snapshot) => {
       complaintsDiv.innerHTML = "";
